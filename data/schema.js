@@ -29,7 +29,7 @@ let userInfoType = new GraphQLObjectType({
         const brackIndex = obj.following_url.indexOf("{");
         return obj.following_url.slice(0, brackIndex);
       }
-     },
+    },
     "gists_url": { type: GraphQLString },
     "starred_url": { type: GraphQLString },
     "subscriptions_url": { type: GraphQLString },
@@ -59,26 +59,6 @@ const query = new GraphQLObjectType({
   name: "Query",
   description: "First GraphQL Server Config - Yay!",
   fields: () => ({
-    hello: {
-      type: GraphQLString,
-      description: "Accepts a name so you can be nice and say hi",
-      args: {
-        name: {
-          type: new GraphQLNonNull(GraphQLString),
-          description: "Name you want to say hi to :)",
-        }
-      },
-      resolve: (_,args) => {
-        return `Hello, ${args.name}!!!`;
-      }
-    },
-    luckyNumber: {
-      type: GraphQLInt,
-      description: "A lucky number",
-      resolve: () => {
-        return 888;
-      }
-    },
     gitHubUser: {
       type: userInfoType,
       description: "GitHub user API data with enhanced and additional data",
@@ -91,9 +71,9 @@ const query = new GraphQLObjectType({
       resolve: (_,{username}) => {
         const url = `https://api.github.com/users/${username}`;
         return axios.get(url)
-                .then(function(response) {
-                  return response.data;
-                });
+                    .then(function(response) {
+                      return response.data;
+                    });
       }
     },
   })
