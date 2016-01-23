@@ -12,7 +12,7 @@ import {
 
 import axios from 'axios';
 
-const userInfoType = new GraphQLObjectType({
+const UserInfoType = new GraphQLObjectType({
   name: "UserInfo",
   description: "Basic information on a GitHub user",
   fields: () => ({
@@ -53,7 +53,7 @@ const userInfoType = new GraphQLObjectType({
     "created_at": { type: GraphQLString },
     "updated_at": { type: GraphQLString },
     "users_following": {
-      type: new GraphQLList(followinInfoType),
+      type: new GraphQLList(FollowinInfoType),
       resolve: (obj) => {
         const brackIndex = obj.following_url.indexOf("{"),
               url =  obj.following_url.slice(0, brackIndex);
@@ -66,7 +66,7 @@ const userInfoType = new GraphQLObjectType({
   })
 });
 
-const followinInfoType = new GraphQLObjectType({
+const FollowinInfoType = new GraphQLObjectType({
   name: "FollowingInfo",
   description: "Basic information on a GitHub user",
   fields: () => ({
@@ -101,7 +101,7 @@ const query = new GraphQLObjectType({
   description: "First GraphQL Server Config - Yay!",
   fields: () => ({
     gitHubUser: {
-      type: userInfoType,
+      type: UserInfoType,
       description: "GitHub user API data with enhanced and additional data",
       args: {
         username: {
