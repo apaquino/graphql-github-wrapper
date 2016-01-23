@@ -9,7 +9,7 @@ Run the command to install
 ```
 npm install
 ```
-Then this command to start the Server
+Then this command to start the GraphQL Server
 
 ```
 npm start
