@@ -12,7 +12,7 @@ import {
 
 import axios from 'axios';
 
-let userInfoType = new GraphQLObjectType({
+let UserInfoType = new GraphQLObjectType({
   name: "UserInfo",
   description: "Basic information on a GitHub user",
   fields: () => ({
@@ -60,7 +60,7 @@ const query = new GraphQLObjectType({
   description: "First GraphQL Server Config - Yay!",
   fields: () => ({
     gitHubUser: {
-      type: userInfoType,
+      type: UserInfoType,
       description: "GitHub user API data with enhanced and additional data",
       args: {
         username: {
