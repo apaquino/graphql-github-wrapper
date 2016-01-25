@@ -53,7 +53,7 @@ const UserInfoType = new GraphQLObjectType({
     "created_at": { type: GraphQLString },
     "updated_at": { type: GraphQLString },
     "users_following": {
-      type: new GraphQLList(FollowinInfoType),
+      type: new GraphQLList(RepoInfoType),
       resolve: (obj) => {
         const brackIndex = obj.following_url.indexOf("{"),
               url =  obj.following_url.slice(0, brackIndex);
@@ -66,8 +66,8 @@ const UserInfoType = new GraphQLObjectType({
   })
 });
 
-const FollowinInfoType = new GraphQLObjectType({
-  name: "FollowingInfo",
+const RepoInfoType = new GraphQLObjectType({
+  name: "RepoInfo",
   description: "Basic information on a GitHub user",
   fields: () => ({
     "login": { type: GraphQLString },
