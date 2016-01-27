@@ -12,6 +12,32 @@ import {
 
 import axios from 'axios';
 
+// Common fields
+function usersFollowing() {
+  return {
+      type: new GraphQLList(RepoInfoType),
+      resolve: (obj) => {
+        const brackIndex = obj.following_url.indexOf("{"),
+              url =  obj.following_url.slice(0, brackIndex);
+        return axios.get(url)
+                    .then(function(response) {
+                      return response.data;
+                    });
+      }
+  };
+}
+
+function followingUrl() {
+  return {
+    type: GraphQLString,
+    resolve: (obj) => {
+      const brackIndex = obj.following_url.indexOf("{");
+      return obj.following_url.slice(0, brackIndex);
+    }
+  };
+}
+
+// Types
 const UserInfoType = new GraphQLObjectType({
   name: "UserInfo",
   description: "Basic information on a GitHub user",
@@ -23,13 +49,7 @@ const UserInfoType = new GraphQLObjectType({
     "url": { type: GraphQLString },
     "html_url": { type: GraphQLString },
     "followers_url": { type: GraphQLString },
-    "following_url": {
-      type: GraphQLString,
-      resolve: (obj) => {
-        const brackIndex = obj.following_url.indexOf("{");
-        return obj.following_url.slice(0, brackIndex);
-      }
-    },
+    "following_url": followingUrl(),
     "gists_url": { type: GraphQLString },
     "starred_url": { type: GraphQLString },
     "subscriptions_url": { type: GraphQLString },
@@ -52,17 +72,7 @@ const UserInfoType = new GraphQLObjectType({
     "following": { type: GraphQLInt },
     "created_at": { type: GraphQLString },
     "updated_at": { type: GraphQLString },
-    "users_following": {
-      type: new GraphQLList(RepoInfoType),
-      resolve: (obj) => {
-        const brackIndex = obj.following_url.indexOf("{"),
-              url =  obj.following_url.slice(0, brackIndex);
-        return axios.get(url)
-                    .then(function(response) {
-                      return response.data;
-                    });
-      }
-    },
+    "users_following": usersFollowing(),
   })
 });
 
@@ -77,13 +87,7 @@ const RepoInfoType = new GraphQLObjectType({
     "url": { type: GraphQLString },
     "html_url": { type: GraphQLString },
     "followers_url": { type: GraphQLString },
-    "following_url": {
-      type: GraphQLString,
-      resolve: (obj) => {
-        const brackIndex = obj.following_url.indexOf("{");
-        return obj.following_url.slice(0, brackIndex);
-      }
-    },
+    "following_url": followingUrl(),
     "gists_url": { type: GraphQLString },
     "starred_url": { type: GraphQLString },
     "subscriptions_url": { type: GraphQLString },
@@ -92,10 +96,12 @@ const RepoInfoType = new GraphQLObjectType({
     "events_url": { type: GraphQLString },
     "received_events_url": { type: GraphQLString },
     "type": { type: GraphQLString },
-    "site_admin": { type: GraphQLBoolean }
+    "site_admin": { type: GraphQLBoolean },
+    "users_following": usersFollowing(),
   })
 });
 
+// Query object
 const query = new GraphQLObjectType({
   name: "Query",
   description: "First GraphQL Server Config - Yay!",
@@ -120,6 +126,7 @@ const query = new GraphQLObjectType({
   })
 });
 
+// Schema
 const schema = new GraphQLSchema({
   query
 });
