@@ -15,16 +15,16 @@ import axios from 'axios';
 // Common fields
 function usersFollowing() {
   return {
-      type: new GraphQLList(RepoInfoType),
-      description: "Fields about the people you this person follows",
-      resolve: (obj) => {
-        const brackIndex = obj.following_url.indexOf("{"),
-              url =  obj.following_url.slice(0, brackIndex);
-        return axios.get(url)
-                    .then(function(response) {
-                      return response.data;
-                    });
-      }
+    type: new GraphQLList(RepoInfoType),
+    description: "Fields about the people you this person follows",
+    resolve: (obj) => {
+      const brackIndex = obj.following_url.indexOf("{"),
+            url =  obj.following_url.slice(0, brackIndex);
+      return axios.get(url)
+                  .then(function(response) {
+                    return response.data;
+                  });
+    }
   };
 }
 
