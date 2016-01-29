@@ -1,6 +1,6 @@
 # GitHub GraphQL Server
 
-This is the GitHub repo to hold the code use in my blog post on medium on GraphQL: Learn by doing.  This is the code from Part 1.  You can go to the other branches to following along.  The master branch will alway be current and will not have all the code from past blogs because it may of been test data or have been refactored.
+This is the GitHub repo to hold the code use in my blog post on medium on GraphQL: Learn by doing.  This is the code from Part 2.  You can go to the other branches to following along.  The master branch will alway be current and will not have all the code from past blogs because it may of been test data or have been refactored.
 
 This assumes you have node 4.2.x and npm installed and configured.
 
