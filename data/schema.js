@@ -6,7 +6,7 @@ import {
 } from 'graphql';
 
 import { usersFollowing, followingUrl } from './commonFields';
-import { UserInfoType, RepoInfoType } from './types';
+import { UserInfoType } from './types';
 import axios from 'axios';
 
 // Query object

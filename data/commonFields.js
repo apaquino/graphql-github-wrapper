@@ -2,7 +2,7 @@ import { GraphQLString, GraphQLList } from 'graphql';
 import { RepoInfoType } from './types';
 import axios from 'axios';
 
-// Function to create common field objects
+// Functions to create common field objects
 
 export function usersFollowing() {
   return {
