@@ -50,7 +50,7 @@ export const UserInfoType = new GraphQLObjectType({
   })
 });
 
-export const RepoInfoType = new GraphQLObjectType({
+export const OwnerRepoInfoType = new GraphQLObjectType({
   name: "RepoInfo",
   description: "Basic information on a GitHub user",
   fields: () => ({

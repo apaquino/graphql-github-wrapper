@@ -1,12 +1,12 @@
 import { GraphQLString, GraphQLList } from 'graphql';
-import { RepoInfoType } from './types';
+import { OwnerRepoInfoType } from './types';
 import axios from 'axios';
 
 // Functions to create common field objects
 
 export function usersFollowing() {
   return {
-    type: new GraphQLList(RepoInfoType),
+    type: new GraphQLList(OwnerRepoInfoType),
     description: "Fields about the people this user follows",
     resolve: (obj) => {
       const brackIndex = obj.following_url.indexOf("{"),
@@ -21,7 +21,7 @@ export function usersFollowing() {
 
 export function userFollowers() {
   return {
-    type: new GraphQLList(RepoInfoType),
+    type: new GraphQLList(OwnerRepoInfoType),
     description: "Fields about the people following this user",
     resolve: (obj) => {
       const url =  obj.followers_url;
