@@ -96,6 +96,7 @@ export const OwnerRepoInfoType = new GraphQLObjectType({
     "type": { type: GraphQLString },
     "site_admin": { type: GraphQLBoolean },
     "users_following": usersFollowing(),
+    "user_followers": userFollowers(),
   })
 });
 
