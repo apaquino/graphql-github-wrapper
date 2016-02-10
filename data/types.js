@@ -58,6 +58,18 @@ export const UserInfoType = new GraphQLObjectType({
                       return response.data;
                     });
       }
+    },
+    "starred_repos": {
+      type: new GraphQLList(DetailedRepoInfoType),
+      description: "Fields about the repos user starred",
+      resolve: (obj) => {
+        const brackIndex = obj.starred_url.indexOf("{"),
+              url =  obj.starred_url.slice(0, brackIndex);
+        return axios.get(url)
+                    .then(function(response) {
+                      return response.data;
+                    });
+      }
     }
   })
 });
