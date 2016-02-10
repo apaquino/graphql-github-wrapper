@@ -15,4 +15,8 @@ Then this command to start the GraphQL Server
 npm start
 ```
 
+TODO:
+* refactor types
+* make helper function to remove "{ ..." from applicable urls
+
 Go to your browser and type http://localhost:8888/GraphQL
