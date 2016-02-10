@@ -5,7 +5,6 @@ import {
   GraphQLNonNull,
 } from 'graphql';
 
-import { usersFollowing, followingUrl } from './commonFields';
 import { UserInfoType } from './types';
 import axios from 'axios';
 
