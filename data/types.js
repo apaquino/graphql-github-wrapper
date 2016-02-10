@@ -7,7 +7,7 @@ import {
   GraphQLBoolean,
 } from 'graphql';
 
-import { usersFollowing, followingUrl } from './commonFields';
+import { usersFollowing, userFollowers, followingUrl } from './commonFields';
 
 // Types for query object
 
@@ -46,6 +46,7 @@ export const UserInfoType = new GraphQLObjectType({
     "created_at": { type: GraphQLString },
     "updated_at": { type: GraphQLString },
     "users_following": usersFollowing(),
+    "user_followers": userFollowers(),
   })
 });
 
