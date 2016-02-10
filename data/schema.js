@@ -80,7 +80,7 @@ const UserInfoType = new GraphQLObjectType({
 
 const RepoInfoType = new GraphQLObjectType({
   name: "RepoInfo",
-  description: "Basic information on a GitHub user",
+  description: "Owner information on a repo",
   fields: () => ({
     "login": { type: GraphQLString },
     "id": { type: GraphQLInt },
