@@ -15,8 +15,6 @@ import {
   starredRepos,
 } from './commonFields';
 
-import axios from 'axios';
-
 // Types for query object
 
 export const UserInfoType = new GraphQLObjectType({
