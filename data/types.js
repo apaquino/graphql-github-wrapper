@@ -15,8 +15,10 @@ import {
   starredRepos,
 } from './commonFields';
 
-// Types for query object
+// helper function
+import { _githubUrlSlicer } from '../utils';
 
+// Types for query object
 export const UserInfoType = new GraphQLObjectType({
   name: "UserInfo",
   description: "Basic information on a GitHub user",

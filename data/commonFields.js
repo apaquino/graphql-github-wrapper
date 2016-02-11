@@ -1,6 +1,7 @@
 import { GraphQLString, GraphQLList } from 'graphql';
 import { OwnerRepoInfoType, DetailedRepoInfoType } from './types';
 import axios from 'axios';
+import { _githubUrlSlicer } from '../utils';
 
 // Functions to create common field objects
 
@@ -9,8 +10,7 @@ export function usersFollowing() {
     type: new GraphQLList(OwnerRepoInfoType),
     description: "Fields about the people this user follows",
     resolve: (obj) => {
-      const brackIndex = obj.following_url.indexOf("{"),
-            url =  obj.following_url.slice(0, brackIndex);
+      const url =  _githubUrlSlicer(obj.following_url);
       return axios.get(url)
                   .then(function(response) {
                     return response.data;
@@ -38,8 +38,7 @@ export function followingUrl() {
     type: GraphQLString,
     description: "URI to get data on the people this person follows",
     resolve: (obj) => {
-      const brackIndex = obj.following_url.indexOf("{");
-      return obj.following_url.slice(0, brackIndex);
+      return _githubUrlSlicer(obj.following_url);
     }
   };
 }
@@ -63,8 +62,7 @@ export function starredRepos() {
     type: new GraphQLList(DetailedRepoInfoType),
     description: "Fields about the repos user starred",
     resolve: (obj) => {
-      const brackIndex = obj.starred_url.indexOf("{"),
-            url =  obj.starred_url.slice(0, brackIndex);
+      const url = _githubUrlSlicer(obj.starred_url);
       return axios.get(url)
                   .then(function(response) {
                     return response.data;
