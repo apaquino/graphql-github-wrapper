@@ -7,7 +7,14 @@ import {
   GraphQLBoolean,
 } from 'graphql';
 
-import { usersFollowing, userFollowers, followingUrl } from './commonFields';
+import {
+  usersFollowing,
+  userFollowers,
+  followingUrl,
+  userRepos,
+  starredRepos,
+} from './commonFields';
+
 import axios from 'axios';
 
 // Types for query object
@@ -48,29 +55,8 @@ export const UserInfoType = new GraphQLObjectType({
     "updated_at": { type: GraphQLString },
     "users_following": usersFollowing(),
     "user_followers": userFollowers(),
-    "repos": {
-      type: new GraphQLList(DetailedRepoInfoType),
-      description: "Fields about the user's repos",
-      resolve: (obj) => {
-        const url =  obj.repos_url;
-        return axios.get(url)
-                    .then(function(response) {
-                      return response.data;
-                    });
-      }
-    },
-    "starred_repos": {
-      type: new GraphQLList(DetailedRepoInfoType),
-      description: "Fields about the repos user starred",
-      resolve: (obj) => {
-        const brackIndex = obj.starred_url.indexOf("{"),
-              url =  obj.starred_url.slice(0, brackIndex);
-        return axios.get(url)
-                    .then(function(response) {
-                      return response.data;
-                    });
-      }
-    }
+    "repos": userRepos(),
+    "starred_repos": starredRepos(),
   })
 });
 
