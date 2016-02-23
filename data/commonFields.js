@@ -24,7 +24,7 @@ export function userFollowers() {
     type: new GraphQLList(OwnerRepoInfoType),
     description: "Fields about the people following this user",
     resolve: (obj) => {
-      const url =  obj.followers_url;
+      const url = obj.followers_url;
       return axios.get(url)
                   .then(function(response) {
                     return response.data;
@@ -48,7 +48,7 @@ export function userRepos() {
     type: new GraphQLList(DetailedRepoInfoType),
     description: "Fields about the user's repos",
     resolve: (obj) => {
-      const url =  obj.repos_url;
+      const url = obj.repos_url;
       return axios.get(url)
                   .then(function(response) {
                     return response.data;
