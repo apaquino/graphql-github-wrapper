@@ -16,7 +16,29 @@ npm start
 ```
 
 TODO:
-* refactor types
-* make helper function to remove "{ ..." from applicable urls
+* Make more Types
 
 Go to your browser and type http://localhost:8888/GraphQL
+
+Here is a sample query
+
+```javascript
+{
+	gitHubUser(username:"apaquino") {
+    login
+    avatar_url
+    following
+    following_url
+    users_following {
+      login
+      avatar_url
+    }
+    user_followers {
+      login
+      avatar_url
+      following_url
+
+    }
+  }
+}
+```
