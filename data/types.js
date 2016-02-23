@@ -19,6 +19,9 @@ import {
 // helper function
 import { _githubUrlSlicer } from '../utils';
 
+// make an object with common fields for some types
+// need babel-plugin-transform-object-rest-spread
+// to spread in the fields properties of the type
 const OwnerRepoInfoTypeFields = {
   "login": { type: GraphQLString },
   "id": { type: GraphQLInt },
